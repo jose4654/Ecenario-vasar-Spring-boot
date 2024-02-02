@@ -1,0 +1,15 @@
+package com.integrador.ecenario.model;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+public abstract class ACliente {
+	@Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+	private Long id;
+	private String nombre;
+	private String apellido;
+	private String dni;
+
+}

@@ -1,0 +1,12 @@
+package com.JOSE.Ecenario_version.model;
+
+
+
+public abstract class ACliente {
+	  @Id
+	    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+	    protected Long id;
+	    protected String nombre;
+	    protected String apellido;
+	    protected String dni;
+}

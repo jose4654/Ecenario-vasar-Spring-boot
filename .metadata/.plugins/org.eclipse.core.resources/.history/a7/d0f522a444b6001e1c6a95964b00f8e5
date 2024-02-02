@@ -1,0 +1,13 @@
+package com.integrador.ecenario.model;
+
+import javax.persistence.Entity;
+
+
+@Getter
+@Setter
+@SuperBuilder
+@Entity
+@NoArgsConstructor // Agregamos constructor sin argumentos
+public class ClienteMobile extends ACliente {
+	
+}

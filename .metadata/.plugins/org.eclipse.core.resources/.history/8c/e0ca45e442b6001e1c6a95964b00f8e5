@@ -1,0 +1,13 @@
+package com.integrador.ecenario.model;
+
+import javax.persistence.Entity;
+
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+public class ClienteMobile extends ACliente {
+	
+}

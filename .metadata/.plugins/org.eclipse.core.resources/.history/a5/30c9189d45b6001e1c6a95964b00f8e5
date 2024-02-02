@@ -1,0 +1,36 @@
+package com.integrador.ecenario.model;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
+
+@Getter
+@Setter
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder
+public class Venta {
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    private Long id;
+    private LocalDate fecha;
+    private Double total;
+    @OneToMany
+    private List<Producto> listaProductos;
+    @OneToOne
+    private ACliente uncliente;
+}
+

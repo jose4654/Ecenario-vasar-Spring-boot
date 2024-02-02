@@ -1,0 +1,6 @@
+package com.integrador.ecenario.model;
+
+
+public class ClienteMobile extends ACliente {
+	
+}

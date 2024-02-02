@@ -1,0 +1,12 @@
+package com.JOSE.Ecenario_version.model;
+
+
+
+@Getter
+@Setter
+@SuperBuilder
+@Entity
+@NoArgsConstructor // Agregamos constructor sin argumentos
+public class ClienteWeb {
+
+}

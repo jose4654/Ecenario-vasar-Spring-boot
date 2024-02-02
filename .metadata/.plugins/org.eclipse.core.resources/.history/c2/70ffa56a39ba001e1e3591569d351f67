@@ -1,0 +1,12 @@
+package com.integrador.ecenario.service;
+
+import org.w3c.dom.Document;
+
+import com.lowagie.text.DocumentException;
+
+import antlr.collections.List;
+
+public interface IPdfGenerator {
+	byte[] generatePdf(List<Venta> ventas) throws DocumentException;
+    void addContent(Document document, List<Venta> ventas) throws DocumentException;
+}

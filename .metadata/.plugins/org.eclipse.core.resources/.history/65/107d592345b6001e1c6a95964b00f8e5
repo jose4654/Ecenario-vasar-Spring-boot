@@ -1,0 +1,37 @@
+package com.integrador.ecenario.model;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+@Getter
+@Setter
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+public class Venta {
+	@Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+	private Long id;
+	private LocalDate fecha;
+	private Double total;
+	@OneToMany
+// composicion ya que no existe una venta sin un producto
+	private List<Producto> listaProductos;
+	@OneToOne
+	//variable de composicion ya que noexiste una venta sin un cliente 
+	private ACliente uncliente;
+	
+	
+
+}

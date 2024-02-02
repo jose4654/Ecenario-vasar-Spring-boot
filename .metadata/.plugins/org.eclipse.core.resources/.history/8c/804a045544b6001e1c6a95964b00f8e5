@@ -1,0 +1,27 @@
+package com.integrador.ecenario.model;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
+
+@Getter
+@Setter
+@SuperBuilder
+@MappedSuperclass
+@NoArgsConstructor // Constructor sin argumentos
+public  class ACliente {
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    protected Long id;
+    protected String nombre;
+    protected String apellido;
+    protected String dni;
+}
+

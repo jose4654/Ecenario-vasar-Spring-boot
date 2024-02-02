@@ -1,0 +1,8 @@
+	package com.integrador.ecenario.model;
+	
+	import javax.persistence.Entity;
+	
+	@Entity
+	public class ClienteWeb extends ACliente {
+	
+	}

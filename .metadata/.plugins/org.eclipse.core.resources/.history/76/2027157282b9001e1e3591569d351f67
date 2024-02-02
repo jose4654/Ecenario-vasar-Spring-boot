@@ -1,0 +1,25 @@
+package com.integrador.ecenario.service;
+
+public class PdfGenerator {
+	 public byte[] generatePdf(List<Venta> ventas) throws DocumentException {
+	        Document document = new Document();
+	        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+	        PdfWriter.getInstance(document, outputStream);
+
+	        document.open();
+	        addContent(document, ventas);
+	        document.close();
+
+	        return outputStream.toByteArray();
+	    }
+
+	    private void addContent(Document document, List<Venta> ventas) throws DocumentException {
+	        for (Venta venta : ventas) {
+	            document.add(new Paragraph("ID: " + venta.getId()));
+	            document.add(new Paragraph("Fecha: " + venta.getFecha()));
+	            document.add(new Paragraph("Monto: " + venta.getMonto()));
+	            // Agregar más detalles según tu modelo de datos
+	            document.add(new Paragraph("\n"));  // Separador entre ventas
+	        }
+	    }
+}

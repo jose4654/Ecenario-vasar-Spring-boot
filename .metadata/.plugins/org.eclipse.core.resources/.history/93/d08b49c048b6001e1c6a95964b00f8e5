@@ -1,0 +1,17 @@
+package com.JOSE.Ecenario_version.model;
+
+
+
+public class Venta {
+	@Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+    private LocalDate fecha;
+    private Double total;
+
+    @OneToMany
+    private List<Producto> listaProductos;
+
+    @OneToOne
+    private ACliente uncliente;
+}

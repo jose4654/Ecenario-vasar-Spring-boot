@@ -1,0 +1,5 @@
+package com.JOSE.Ecenario_version.model;
+
+public class Venta {
+
+}

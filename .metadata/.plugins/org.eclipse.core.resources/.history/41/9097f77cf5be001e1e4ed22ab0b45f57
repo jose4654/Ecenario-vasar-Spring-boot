@@ -1,0 +1,86 @@
+package com.integrador.ecenario.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.integrador.ecenario.model.Producto;
+import com.integrador.ecenario.service.IProductoService;
+
+
+@RestController
+public class ProductoController {
+	
+	 @Autowired
+	    private IProductoService productoService;
+	 
+	 
+	 @GetMapping("/Productos")
+	    public ResponseEntity<List<Producto>> getProductos() {
+	        List<Producto> productos = productoService.getProductos();
+	        
+	        if (productos == null || productos.isEmpty()) {
+	            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+	        }
+	        
+	        return ResponseEntity.ok(productos);
+	    }
+
+	    @PostMapping("/Producto/crear")
+	    public ResponseEntity<String> saveProducto(@RequestBody Producto producto) {
+	        if (producto.getNombre() == null || producto.getMarca() == null || producto.getCosto() == null || producto.getCantidad_disponible() == null) {
+	            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Los datos del producto no pueden ser nulos");
+	        }
+
+	        productoService.saveProducto(producto);
+	        return ResponseEntity.status(HttpStatus.CREATED).body("El producto fue creado correctamente");
+	    }
+
+	    @PutMapping("/Producto/editar/{id_original}")
+	    public ResponseEntity<?> editarProducto(@PathVariable Long id_original,
+	                                                    @RequestParam(required = false, name = "nombre") String nuevoNombre,
+	                                                    @RequestParam(required = false, name = "marca") String nuevaMarca,
+	                                                    @RequestParam(required = false, name = "costo") Double nuevoCosto,
+	                                                    @RequestParam(required = false, name = "cantidad") Double cantidadDisponible) {
+	        if (nuevoNombre == null && nuevaMarca == null && nuevoCosto == null && cantidadDisponible == null) {
+	            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Al menos uno de los campos de edición debe ser no nulo");
+	        }
+
+	        productoService.edidProducto(id_original, nuevoNombre, nuevaMarca, nuevoCosto, cantidadDisponible);
+	        Producto producto = productoService.findPoducto(id_original);
+	        return ResponseEntity.ok(producto);
+	    }
+	    
+	    @GetMapping("/Productos/Cant")
+	    public ResponseEntity<List<Producto>> getProductosCant() {
+	        List<Producto> productos = productoService.getProductosCant();
+	        
+	        if (productos == null || productos.isEmpty()) {
+	            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+	        }
+	        
+	        return ResponseEntity.ok(productos);
+	    }
+	    
+	    @DeleteMapping("/Productos/borrar/{id}")
+	    public ResponseEntity<String> deleteProducto(@PathVariable Long id) {
+	        boolean deleted = productoService.deleteProducto(id);
+	        
+	        if (deleted) {
+	            return ResponseEntity.ok("Producto eliminado correctamente");
+	        } else {
+	            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontró el producto con ID: " + id);
+	        }
+	    }
+
+}

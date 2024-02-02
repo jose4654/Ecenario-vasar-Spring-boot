@@ -1,0 +1,8 @@
+package com.integrador.ecenario.archivo;
+
+import org.springframework.stereotype.Component;
+
+@Component("/Ventas")
+public class ListaVentasPDF {
+
+}

@@ -1,0 +1,13 @@
+package com.JOSE.Ecenario_version.model;
+
+import jakarta.persistence.Entity;
+import lombok.NoArgsConstructor;
+
+@Getter
+@Setter
+@SuperBuilder
+@Entity
+@NoArgsConstructor // Agregamos constructor sin argumentos
+public class ClienteWeb {
+
+}

@@ -1,0 +1,5 @@
+package com.integrador.ecenario.service;
+
+public interface IPdfGenerator {
+
+}
